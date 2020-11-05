@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="../static/market-rising.ico" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@latest/dist/css/splide.min.css">
+    <link rel="stylesheet" href="./tailwind.css">
+    <title>Marche :: {% block title %}{%endblock%}</title>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="bg-gray-30 shadow-md fixed bg-white w-full z-10">
+        <div class="container flex items-center justify-between mx-auto">
+            <div class="p-2">
+                <img class="w-8 h-8" src="../static/market-rising-icon.png" alt="Marche">
+            </div>
+            <div>
+                <ul class="flex flex-start items-center sm:hidden lg:flex">
+                    <li class="px-4 hover:bg-red-200 py-3"><a class="uppercase font-semibold text-gray-800" href="#!">Home</a></li>
+                    <li class="px-4 hover:bg-red-200 py-3"><a class="uppercase font-semibold text-gray-800" href="#!">Men</a></li>
+                    <li class="px-4 hover:bg-red-200 py-3"><a class="uppercase font-semibold text-gray-800" href="#!">Women</a></li>
+                    <li class="px-4 hover:bg-red-200 py-3"><a class="uppercase font-semibold text-gray-800" href="#!">Boy</a></li>
+                    <li class="px-4 hover:bg-red-200 py-3"><a class="uppercase font-semibold text-gray-800" href="#!">Girl</a></li>
+                </ul>
+            </div>
+            <div class="relative py-2">
+                <svg style="transform:translateY(-50%); top: 50%; left: 9px;" class="w-6 h-6 fill-current text-gray-700 absolute" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" >
+                    <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd" />
+                </svg>
+                <input class="focus:outline-none bg-gray-100 py-1 px-2 focus:shadow-outline rounded-sm text-gray-700 font-semibold text-md pl-10 border-solid border-2 border-gray-500 focus:border-0" type="text" name="text">
+            </div>
+            <div class="flex py-2">
+                <div id="cart-btn" class="flex px-4 py-2 items-center hover:bg-gray-300 cursor-pointer">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" class="w-6 h-6 fill-current text-gray-700">
+                        <path d="M3 1a1 1 0 000 2h1.22l.305 1.222a.997.997 0 00.01.042l1.358 5.43-.893.892C3.74 11.846 4.632 14 6.414 14H15a1 1 0 000-2H6.414l1-1H14a1 1 0 00.894-.553l3-6A1 1 0 0017 3H6.28l-.31-1.243A1 1 0 005 1H3zM16 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zM6.5 18a1.5 1.5 0 100-3 1.5 1.5 0 000 3z" />
+                    </svg>
+                    <span id="cart-quantity" class="bg-blue-500 rounded-full px-2 font-semibold text-xs text-white">4</span>
+                </div>
+                <div class="px-4 py-2 hover:bg-gray-300 cursor-pointer relative">
+                    <div id="user-btn" >
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" class="w-6 h-6 fill-current text-gray-700">
+                            <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-6-3a2 2 0 11-4 0 2 2 0 014 0zm-2 4a5 5 0 00-4.546 2.916A5.986 5.986 0 0010 16a5.986 5.986 0 004.546-2.084A5 5 0 0010 11z" clip-rule="evenodd" />
+                        </svg>
+                    </div>
+                    <div id="user-box" class="hidden absolute bg-white right-0 mt-4 rounded-sm p-2 shadow-lg" style="width: 30rem;">
+                        <div class="flex items-center justify-around">
+                            <div class="w-10 h-10 bg-gray-300 rounded-full overflow-hidden">
+                                <img src="http://placekitten.com/100/100" alt="">
+                            </div>
+                            <div>
+                                <h2 class="font-semibold text-2xl text-gray-700">Vivek Kumar</h2>
+                            </div>
+                        </div>
+                        <hr class="my-2">
+                        <div class="flex items-start justify-start px-8 relative">
+                            <ul class="my-4 w-1/2">
+                                <li class="py-1"><a class="hover:underline hover:text-red-500" href="#!">Your Profile</a></li>
+                                <li class="py-1"><a class="hover:underline hover:text-red-500" href="#!">Your Wishlist</a></li>
+                                <li class="py-1">
+                                    <a class="hover:underline hover:text-red-500" href="#!">Track Orders</a>
+                                    <span class="bg-red-500 px-2 text-xs uppercase text-white font-semibold ml-4">New</span>
+                                </li>
+                                <li class="py-1"><a class="hover:underline hover:text-red-500" href="#!">Past Purchase</a></li>
+                                <li class="py-1">
+                                    <a class="hover:underline hover:text-red-500" href="#!">Contact Us</a>
+                                    <span class="bg-teal-500 px-2 text-xs uppercase text-white font-semibold ml-4">pro</span>
+                                </li>
+                            </ul>
+                            <div style="left: 50%" class="w-1 h-full absolute bg-gray-200 rounded-md"></div>
+                            <ul class="my-4 w-1/2 ml-10">
+                                <li class="py-1"><a class="hover:underline hover:text-red-500" href="#!">Your Reviews</a></li>
+                                <li class="py-1"><a class="hover:underline hover:text-red-500" href="#!">Offers for you</a></li>
+                            </ul>
+                        </div>
+                        <hr class="my-2">
+                        <a class="border-solid border-2 border-red-500 px-4 py-2 mt-4 block text-center rounded-sm text-xs uppercase font-semibold text-red-600 mx-auto hover:bg-red-200" href="#!">Logout</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+    
+    <div class="w-full h-64 relative pt-10 overflow-hidden" style="background-image: url('../static/MarcheCollage.png');">
+        <div class="w-full h-full bg-black opacity-75 absolute"></div>
+        <br><br>
+        <div class="flex items-center justify-center">
+            <h1 class="text-6xl text-white relative z-index-20">{% block title %}{% endblock %}.</h1>
+        </div>
+    </div>
+
+    <div class="py-8 bg-gray-300 my-10">
+        {%block content%}
+        {% endblock %}
+    </div>
+
+    <!-- Footer -->
+    <div class="bg-gray-900 py-12 px-8">
+        <div class="flex sm:flex-col lg:flex-row text-white">
+            <div class="grid lg:grid-cols-4 sm:grid-cols-2 text-white lg:w-3/4 sm:w-full">
+                <div class="lg:w-1/4">
+                    <ul>
+                        <li class="uppercase text-gray-600 mb-2">About</li>
+                        <li>Contact Us</li>
+                        <li>About Us</li>
+                        <li>Career</li>
+                        <li>Stories</li>
+                        <li>Press</li>
+                        <li>Wholeseller</li>
+                    </ul>
+                </div>
+                <div class="lg:w-1/4">
+                    <ul>
+                        <li class="uppercase text-gray-600 mb-2">Help</li>
+                        <li>Contact Us</li>
+                        <li>About Us</li>
+                        <li>Career</li>
+                        <li>Stories</li>
+                        <li>Press</li>
+                        <li>Wholeseller</li>
+                    </ul>
+                </div>
+                <div class="lg:w-1/4">
+                    <ul>
+                        <li class="uppercase text-gray-600 mb-2">Help</li>
+                        <li>Return Policy</li>
+                        <li>Terms Of Use</li>
+                        <li>Security</li>
+                        <li>Privacy</li>
+                        <li>Sitemap</li>
+                        <li>ERP Complain</li>
+                    </ul>
+                </div>
+                <div class="lg:w-1/4">
+                    <ul>
+                        <li class="uppercase text-gray-600 mb-2">Social</li>
+                        <li>Facebook</li>
+                        <li>Twitter</li>
+                        <li>Linked In</li>
+                        <li>Youtube</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="flex items-start lg:border-solid lg:border-l-2 sm:mt-8 border-gray-800 lg:pl-10">
+                <div class="w-64">
+                    <h4 class="uppercase text-gray-600 mb-2">Mail Us:</h4>
+                    <p class="text-xs">Flipkart Internet Private Limited,<br>
+                        Buildings Alyssa, Begonia & <br>
+                        Clove Embassy Tech Village,<br>
+                        Outer Ring Road, Devarabeesanahalli Village,<br>
+                        Bengaluru, 560103,<br>
+                        Karnataka, India</p>
+                </div>
+                <div class="w-64">
+                    <h4 class="uppercase text-gray-600 mb-2">Registered Address:</h4>
+                    <p class="text-xs">Flipkart Internet Private Limited,<br>
+                        Buildings Alyssa, Begonia & <br>
+                        Clove Embassy Tech Village,<br>
+                        Outer Ring Road, Devarabeesanahalli Village,<br>
+                        Bengaluru, 560103,<br>
+                        Karnataka, India <br>
+                        CIN : U51109KA2012PTC066107 <br>
+                        Telephone: <a href="tel:18002089898">1800 208 9898</a></p>
+                </div>
+            </div>
+        </div>
+        <div>
+            <a href="#!">Sell on Marche</a>
+            <a href="#!">Advertise</a>
+            <p>&lt;coded&gt;</p>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@latest/dist/js/splide.min.js"></script>
+    <script>
+        var userBtn = document.querySelector("#user-btn")
+        var userBox = document.querySelector("#user-box")
+        var cartBtn = document.querySelector("#cart-btn")
+        userBtn.addEventListener("click", ()=>{
+            console.log("Click")
+            if (userBox.classList.contains("hidden")){
+                userBox.classList.remove("hidden")
+            } else{
+                userBox.classList.add("hidden")
+            }
+        })
+    </script>
+    {% block script%}
+    {% endblock %}
+</body>
+</html>

@@ -1,0 +1,60 @@
+{% extends '../base.html' %}
+{% load static %}
+
+{% block title %}All Products{% endblock %}
+
+{% block content %}
+<div class="container mx-auto p-4 bg-white rounded-lg shadow-lg">
+    <table class="table-auto w-full">
+        <thead>
+            <tr class="bg-gray-300">
+                <th class="w-1/12 py-3 border uppercase tracking-wide">S. No.</th>
+                <th class="w-5/12 py-3 border uppercase tracking-wide">Product</th>
+                <th class="w-2/12 py-3 border uppercase tracking-wide">Price</th>
+                <th class="w-2/12 py-3 border uppercase tracking-wide">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="">1.</td>
+                <td>Sonat HiFibre Watch</td>
+                <td>1299</td>
+                <td>
+                    <a href="#!" class="hover:bg-red-200 float-right text-center block font-semibold text-red-500 px-4 py-1 text-xs uppercase border-solid border-2 border-red-500 rounded-sm">Remove</a>
+                </td>
+            </tr>
+            <tr>
+                <td>1.</td>
+                <td>Sonat HiFibre Watch</td>
+                <td>1299</td>
+                <td>
+                    <a href="#!" class="hover:bg-red-200 float-right text-center block font-semibold text-red-500 px-4 py-1 text-xs uppercase border-solid border-2 border-red-500 rounded-sm">Remove</a>
+                </td>
+            </tr>
+            <tr>
+                <td>1.</td>
+                <td>Sonat HiFibre Watch</td>
+                <td>1299</td>
+                <td>
+                    <a href="#!" class="hover:bg-red-200 float-right text-center block font-semibold text-red-500 px-4 py-1 text-xs uppercase border-solid border-2 border-red-500 rounded-sm">Remove</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="pb-2 pt-4 flex items-center justify-between">
+        <span><strong>Total Price: </strong>14000</span>
+        <a href="#!" class="hover:bg-blue-200 inline-block font-semibold text-blue-500 px-4 py-1 text-xs uppercase border-solid border-2 border-blue-500 rounded-sm">Checkout</a>
+    </div>
+</div>
+{% endblock %}
+
+{% block script%}
+<script>
+    var tds = document.querySelectorAll("td")
+    tds.forEach((td)=>{
+        td.classList.add("px-4")
+        td.classList.add("py-2")
+        td.classList.add("border")
+    })
+</script>
+{% endblock %}
