@@ -1,4 +1,5 @@
-{%load static%}
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -179,42 +180,17 @@
 
     <div class="py-8 bg-gray-300 my-10">
         <div class="container mx-auto grid lg:grid-cols-4 sm:grid-cols-2 lg:gap-y-8 sm:gap-y-6">
+            {% for category in categories %}
             <div style="width: 18rem;" class="shadow-lg bg-white mx-auto">
                 <div class="text-center p-2 bg-blue-700 text-white">
-                    <h3 class="text-2xl font-semibold uppercase">Shoes</h3>
+                    <h3 class="text-2xl font-semibold uppercase">{{category.name}}</h3>
                 </div>
                 <div class="object-cover h-64 overflow-hidden flex items-center justify-center px-8 py-4">
-                    <img class="" src="../static/shoes/41Leu3gBUFL.jpg" alt="">
+                    <img class="" src="{{category.image.url}}" alt="">
                 </div>
-                <a href="#!" class="m-8 block text-center uppercase font-semibold rounded-md border-solid border-2 border-blue-500 text-sm text-blue-600 py-2 hover:bg-blue-200 mt-8">View All Shoes</a>
+                <a href="{% url 'products-by-category' category.pk %}" class="m-8 block text-center uppercase font-semibold rounded-md border-solid border-2 border-blue-500 text-sm text-blue-600 py-2 hover:bg-blue-200 mt-8">View All {{category.name}}s</a>
             </div>
-            <div style="width: 18rem;" class="shadow-lg bg-white mx-auto">
-                <div class="text-center p-2 bg-blue-700 text-white">
-                    <h3 class="text-2xl font-semibold uppercase">Phone</h3>
-                </div>
-                <div class="object-cover h-64 overflow-hidden flex items-center justify-center px-8 py-4">
-                    <img class="" src="../static/phones/71m05O2uNdL._SL1500_.jpg" alt="">
-                </div>
-                <a href="#!" class="m-8 block text-center uppercase font-semibold rounded-md border-solid border-2 border-blue-500 text-sm text-blue-600 py-2 hover:bg-blue-200 mt-8">View All Shoes</a>
-            </div>
-            <div style="width: 18rem;" class="shadow-lg bg-white mx-auto">
-                <div class="text-center p-2 bg-blue-700 text-white">
-                    <h3 class="text-2xl font-semibold uppercase">Laptops</h3>
-                </div>
-                <div class="object-cover h-64 overflow-hidden flex items-center justify-center px-8 py-4">
-                    <img class="" src="../static/laptops/71k3N4gxNeL._SL1486_.jpg" alt="">
-                </div>
-                <a href="#!" class="m-8 block text-center uppercase font-semibold rounded-md border-solid border-2 border-blue-500 text-sm text-blue-600 py-2 hover:bg-blue-200 mt-8">View All Shoes</a>
-            </div>
-            <div style="width: 18rem;" class="shadow-lg bg-white mx-auto">
-                <div class="text-center p-2 bg-blue-700 text-white">
-                    <h3 class="text-2xl font-semibold uppercase">Watch</h3>
-                </div>
-                <div class="object-cover h-64 overflow-hidden flex items-center justify-center px-8 py-4">
-                    <img class="" src="../static/watch/71uK-2cc7DL._UL1500_.jpg" alt="">
-                </div>
-                <a href="#!" class="m-8 block text-center uppercase font-semibold rounded-md border-solid border-2 border-blue-500 text-sm text-blue-600 py-2 hover:bg-blue-200 mt-8">View All Shoes</a>
-            </div>
+            {% endfor %}
         </div>
         <a class="float-right inline-block pr-8 pb-4 hover:underline hover:text-blue-500" href="#!">Find All Categories >></a>
     </div>

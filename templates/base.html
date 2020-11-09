@@ -1,11 +1,12 @@
+{%load static%}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="../static/market-rising.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="{% static 'market-rising.ico' %}" type="image/x-icon">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@latest/dist/css/splide.min.css">
-    <link rel="stylesheet" href="./tailwind.css">
+    <link rel="stylesheet" href="{% static 'tailwind.css' %}">
     <title>Marche :: {% block title %}{%endblock%}</title>
 </head>
 <body>
@@ -13,7 +14,7 @@
     <nav class="bg-gray-30 shadow-md fixed bg-white w-full z-10">
         <div class="container flex items-center justify-between mx-auto">
             <div class="p-2">
-                <img class="w-8 h-8" src="../static/market-rising-icon.png" alt="Marche">
+                <img class="w-8 h-8" src="{% static 'market-rising-icon.png' %}" alt="Marche">
             </div>
             <div>
                 <ul class="flex flex-start items-center sm:hidden lg:flex">
@@ -81,11 +82,11 @@
         </div>
     </nav>
     
-    <div class="w-full h-64 relative pt-10 overflow-hidden" style="background-image: url('../static/MarcheCollage.png');">
+    <div class="w-full h-64 relative pt-10 overflow-hidden" style="background-image: url({% static 'MarcheCollage.png' %});">
         <div class="w-full h-full bg-black opacity-75 absolute"></div>
         <br><br>
         <div class="flex items-center justify-center">
-            <h1 class="text-6xl text-white relative z-index-20">{% block title %}{% endblock %}.</h1>
+            <h1 class="text-6xl text-white relative z-index-20 m-8">{% block sub_title %}{% endblock %}.</h1>
         </div>
     </div>
 
