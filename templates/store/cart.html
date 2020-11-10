@@ -15,35 +15,21 @@
             </tr>
         </thead>
         <tbody>
+            {% for product in products %}
             <tr>
                 <td class="">1.</td>
-                <td>Sonat HiFibre Watch</td>
-                <td>1299</td>
+                <td>{{product.name}}</td>
+                <td>{{product.price}}</td>
                 <td>
-                    <a href="#!" class="hover:bg-red-200 float-right text-center block font-semibold text-red-500 px-4 py-1 text-xs uppercase border-solid border-2 border-red-500 rounded-sm">Remove</a>
+                    <a href="{% url 'remove-cart' product.id %}" class="hover:bg-red-200 float-right text-center block font-semibold text-red-500 px-4 py-1 text-xs uppercase border-solid border-2 border-red-500 rounded-sm">Remove</a>
                 </td>
             </tr>
-            <tr>
-                <td>1.</td>
-                <td>Sonat HiFibre Watch</td>
-                <td>1299</td>
-                <td>
-                    <a href="#!" class="hover:bg-red-200 float-right text-center block font-semibold text-red-500 px-4 py-1 text-xs uppercase border-solid border-2 border-red-500 rounded-sm">Remove</a>
-                </td>
-            </tr>
-            <tr>
-                <td>1.</td>
-                <td>Sonat HiFibre Watch</td>
-                <td>1299</td>
-                <td>
-                    <a href="#!" class="hover:bg-red-200 float-right text-center block font-semibold text-red-500 px-4 py-1 text-xs uppercase border-solid border-2 border-red-500 rounded-sm">Remove</a>
-                </td>
-            </tr>
+            {% endfor %}
         </tbody>
     </table>
     <div class="pb-2 pt-4 flex items-center justify-between">
-        <span><strong>Total Price: </strong>14000</span>
-        <a href="#!" class="hover:bg-blue-200 inline-block font-semibold text-blue-500 px-4 py-1 text-xs uppercase border-solid border-2 border-blue-500 rounded-sm">Checkout</a>
+        <span><strong>Total Price: </strong>{{total_price}}</span>
+        <a href="{% url 'checkout' %}" class="hover:bg-blue-200 inline-block font-semibold text-blue-500 px-4 py-1 text-xs uppercase border-solid border-2 border-blue-500 rounded-sm">Checkout</a>
     </div>
 </div>
 {% endblock %}

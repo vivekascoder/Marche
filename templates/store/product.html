@@ -20,7 +20,7 @@
         </div>
     </div>
     <div>
-        <a href="#!" class="m-8 block text-center uppercase font-semibold rounded-md border-solid border-2 border-blue-500 text-sm text-blue-600 py-2 hover:bg-blue-200 mx-8">Add to cart</a>
+        <a href="{% url 'add-cart' product.id %}" class="m-8 block text-center uppercase font-semibold rounded-md border-solid border-2 border-blue-500 text-sm text-blue-600 py-2 hover:bg-blue-200 mx-8">Add to cart</a>
     </div>
 </div>
 {% endblock %}

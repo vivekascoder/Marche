@@ -24,6 +24,13 @@ class Cart(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     products = models.ManyToManyField(Product)
 
+    def total_price(self):
+        price = 0
+        for product in self.products.all():
+            price += product.price
+        return price
+
+
     def __str__(self):
         return self.user.username
 
