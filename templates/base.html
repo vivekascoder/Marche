@@ -14,15 +14,16 @@
     <nav class="bg-gray-30 shadow-md fixed bg-white w-full z-10">
         <div class="container flex items-center justify-between mx-auto">
             <div class="p-2">
-                <img class="w-8 h-8" src="{% static 'market-rising-icon.png' %}" alt="Marche">
+                <a href="{% url 'home' %}">
+                    <img class="w-8 h-8" src="../static/market-rising-icon.png" alt="Marche">
+                </a>
             </div>
             <div>
                 <ul class="flex flex-start items-center sm:hidden lg:flex">
-                    <li class="px-4 hover:bg-red-200 py-3"><a class="uppercase font-semibold text-gray-800" href="#!">Home</a></li>
-                    <li class="px-4 hover:bg-red-200 py-3"><a class="uppercase font-semibold text-gray-800" href="#!">Men</a></li>
-                    <li class="px-4 hover:bg-red-200 py-3"><a class="uppercase font-semibold text-gray-800" href="#!">Women</a></li>
-                    <li class="px-4 hover:bg-red-200 py-3"><a class="uppercase font-semibold text-gray-800" href="#!">Boy</a></li>
-                    <li class="px-4 hover:bg-red-200 py-3"><a class="uppercase font-semibold text-gray-800" href="#!">Girl</a></li>
+                    <li class="px-4 hover:bg-red-200 py-3"><a class="uppercase font-semibold text-gray-800" href="{% url 'home' %}">Home</a></li>
+                    {% for category in categories %}
+                    <li class="px-4 hover:bg-red-200 py-3"><a class="uppercase font-semibold text-gray-800" href="{% url 'products-by-category' category.pk %}">{{category.name}}</a></li>
+                    {% endfor %}
                 </ul>
             </div>
             <div class="relative py-2">
@@ -32,12 +33,16 @@
                 <input class="focus:outline-none bg-gray-100 py-1 px-2 focus:shadow-outline rounded-sm text-gray-700 font-semibold text-md pl-10 border-solid border-2 border-gray-500 focus:border-0" type="text" name="text">
             </div>
             <div class="flex py-2">
-                <div id="cart-btn" class="flex px-4 py-2 items-center hover:bg-gray-300 cursor-pointer">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" class="w-6 h-6 fill-current text-gray-700">
-                        <path d="M3 1a1 1 0 000 2h1.22l.305 1.222a.997.997 0 00.01.042l1.358 5.43-.893.892C3.74 11.846 4.632 14 6.414 14H15a1 1 0 000-2H6.414l1-1H14a1 1 0 00.894-.553l3-6A1 1 0 0017 3H6.28l-.31-1.243A1 1 0 005 1H3zM16 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zM6.5 18a1.5 1.5 0 100-3 1.5 1.5 0 000 3z" />
-                    </svg>
-                    <span id="cart-quantity" class="bg-blue-500 rounded-full px-2 font-semibold text-xs text-white">4</span>
-                </div>
+                <a href="{% url 'cart' %}">
+                    <div id="cart-btn" class="flex px-4 py-2 items-center hover:bg-gray-300 cursor-pointer">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" class="w-6 h-6 fill-current text-gray-700">
+                            <path d="M3 1a1 1 0 000 2h1.22l.305 1.222a.997.997 0 00.01.042l1.358 5.43-.893.892C3.74 11.846 4.632 14 6.414 14H15a1 1 0 000-2H6.414l1-1H14a1 1 0 00.894-.553l3-6A1 1 0 0017 3H6.28l-.31-1.243A1 1 0 005 1H3zM16 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zM6.5 18a1.5 1.5 0 100-3 1.5 1.5 0 000 3z" />
+                        </svg>
+                        {% if request.user.is_authenticated %}
+                        <span id="cart-quantity" class="bg-blue-500 rounded-full px-2 font-semibold text-xs text-white">{% block cart_total %}{% endblock %}</span>
+                        {% endif %}                
+                    </div>
+                </a>
                 <div class="px-4 py-2 hover:bg-gray-300 cursor-pointer relative">
                     <div id="user-btn" >
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" class="w-6 h-6 fill-current text-gray-700">

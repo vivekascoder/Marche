@@ -1,0 +1,27 @@
+{% extends './base.html' %}
+
+{% block title %}{{title}}{%endblock%}
+
+{% block content %}
+<div class="container mx-auto p-4 bg-white rounded-lg shadow-lg my-10">
+    <a href="{% url 'shipper-home' %}" class="inline-block px-2 hover:underline"><<< Shipper Home</a>
+    <div class="w-64 mx-auto">
+        <form action="#" method="post">
+            {% csrf_token %}
+            {{form.status}}
+            <input class="my-4 hover:bg-teal-200 text-center block font-semibold px-4 py-1 w-full text-teal-500 text-xs uppercase border-solid border-2 border-teal-500 rounded-sm" type="submit" value="Change Now">
+        </form>
+    </div>
+</div>
+{% endblock %}
+
+{% block script%}
+<script>    
+    var select = document.querySelector("select")
+    select.classList.add("p-2")
+    select.classList.add("bg-gray-200")
+    select.classList.add("uppercase")
+    select.classList.add("rounded-lg")
+    select.classList.add("w-full")
+</script>
+{% endblock %}

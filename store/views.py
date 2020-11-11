@@ -5,7 +5,8 @@ from django.shortcuts import (
 from store.models import (
     Category,
     Product,
-    Cart
+    Cart,
+    Order
 )
 from instamojo_wrapper import Instamojo
 from django.conf import settings
@@ -15,6 +16,11 @@ def home(request):
     context = {
         'categories': Category.objects.all()[:4]
     }
+    if request.user.is_authenticated:
+        user = request.user
+        cart = Cart.objects.get_or_create(user=user)[0]
+        context['cart_count'] = cart.products.count()
+
     return render(request, "index.html", context=context)
 
 def cart(request):
@@ -24,7 +30,8 @@ def cart(request):
         products = cart.products.all()
         context = {
             'products': products,
-            'total_price': cart.total_price()
+            'total_price': cart.total_price(),
+            'cart_total': cart.products.count()
         }
         return render(request, "store/cart.html", context=context)
     return Http404("Not for you.")
@@ -34,6 +41,10 @@ def products(request, category_id):
     context = {
         'products': category.products.all()
     }
+    if request.user.is_authenticated:
+        user = request.user
+        cart = Cart.objects.get_or_create(user=user)[0]
+        context['cart_total'] = cart.products.count()
     return render(request, 'store/products.html', context=context)
 
 def product(request, product_id):
@@ -41,6 +52,10 @@ def product(request, product_id):
     context = {
         'product': product
     }
+    if request.user.is_authenticated:
+        user = request.user
+        cart = Cart.objects.get_or_create(user=user)[0]
+        context['cart_total'] = cart.products.count()
     return render(request, 'store/product.html', context=context)
 
 
@@ -78,11 +93,47 @@ def checkout(request):
             )
             response = api.payment_request_create(
                 amount = str(total_price),
-                purpose = "Buying Products from March Site."
+                purpose = "Buying Products from March Site.",
+                redirect_url = "http://localhost:8000/success"
             )
-            cart.products.clear()
             return redirect(response['payment_request']['longurl'])
     return HttpResponse("You're not logged In.")
 
 def successful_payment(request):
-    return HttpResponse("<h1>Payment Done</h1>")
+    """
+    payment_id=MOJO0b10N05A12374905
+    payment_status=Credit
+    payment_request_id=1fb41cbaae844a8b88c970c081f71ba1
+    website.com/cart?product_id=1
+    """
+    if request.user.is_authenticated:
+        user = request.user
+        cart = Cart.objects.get_or_create(user=user)[0]
+
+        # Verifying the payments.
+        payment_request_id = request.GET['payment_request_id']
+        api = Instamojo(
+            api_key = settings.API_KEY, 
+            auth_token = settings.AUTH_TOKEN, 
+            endpoint='https://test.instamojo.com/api/1.1/'
+        )
+        response = api.payment_request_status(payment_request_id)
+
+        if response['success']:
+            order = Order.objects.create(
+                payer = user,
+                status = 'Accepted'
+            )
+
+            for product in cart.products.all():
+                product.quantity -= 1
+                order.cart.add(product)
+
+            # Everything was successful now, clear the existing cart.
+            cart.products.clear()
+            context = {
+                'cart_count': cart.products.count()
+            }
+            return render(request, "store/success.html", context=context)
+        return HttpResponse("OH! Man This is not how it works.")
+        return HttpResponse("You're not logged In.")

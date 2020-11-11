@@ -119,5 +119,5 @@ MEDIA_ROOT = BASE_DIR / 'media/'
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
 
-AUTH_TOKEN = "++++++++++++++++"
-API_KEY = "++++++++++"
+AUTH_TOKEN = "+++++++++++++"
+API_KEY = "+++++++++++++"

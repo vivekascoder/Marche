@@ -1,0 +1,44 @@
+{% extends './base.html' %}
+
+{% block title %}{{title}}{%endblock%}
+
+{% block content %}
+<div class="container mx-auto p-4 bg-white rounded-lg shadow-lg my-10">
+    <a href="{% url 'shipper-home' %}" class="inline-block px-2 hover:underline"><<< Shipper Home</a>
+    <table class="table-auto w-full">
+        <thead>
+            <tr class="bg-gray-300">
+                <th class="w-1/12 py-3 border uppercase tracking-wide">S. No.</th>
+                <th class="w-5/12 py-3 border uppercase tracking-wide">Order By</th>
+                <th class="w-2/12 py-3 border uppercase tracking-wide">Date</th>
+                <th class="w-2/12 py-3 border uppercase tracking-wide">Total Products</th>
+                <th class="w-2/12 py-3 border uppercase tracking-wide">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for order in orders %}
+            <tr>
+                <td class="">1.</td>
+                <td>{{order.payer.username}}</td>
+                <td>{{order.date}}</td>
+                <td>{{order.cart.count}}</td>
+                <td>
+                    <a href="{% url 'select-order' order.id %}" class="hover:bg-teal-200 float-right text-center block font-semibold text-teal-500 px-4 py-1 text-xs uppercase border-solid border-2 border-teal-500 rounded-sm">Select</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
+
+{% block script%}
+<script>
+    var tds = document.querySelectorAll("td")
+    tds.forEach((td)=>{
+        td.classList.add("px-4")
+        td.classList.add("py-2")
+        td.classList.add("border")
+    })
+</script>
+{% endblock %}

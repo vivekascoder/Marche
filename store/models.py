@@ -30,7 +30,23 @@ class Cart(models.Model):
             price += product.price
         return price
 
-
     def __str__(self):
         return self.user.username
 
+# Creating Other Models.
+
+class Order(models.Model):
+    STATUS = (
+        ('Accepted', 'accepted'),
+        ('Packed', 'packed'),
+        ('Shipping', 'shipping'),
+        ('Shipped', 'shipped'),
+    )
+    payer = models.ForeignKey(User, on_delete=models.CASCADE, related_name='payer')
+    shipper = models.ForeignKey(User, on_delete=models.CASCADE, related_name='shipper', null=True, blank=True)
+    cart = models.ManyToManyField(Product)
+    status = models.CharField(choices=STATUS, max_length=20)
+    date = models.DateTimeField(auto_now_add=True, null=True)
+
+    def __str__(self):
+        return self.payer.username

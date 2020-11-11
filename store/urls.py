@@ -9,4 +9,7 @@ urlpatterns = [
     path('cart/add/<int:product_id>', store_views.add_cart, name='add-cart'),
     path('cart/remove/<int:product_id>', store_views.remove_cart, name='remove-cart'),
     path('checkout', store_views.checkout, name='checkout'),
+    path('success', store_views.successful_payment, name='success'),
 ]
+
+# Author.objects.filter(name__contains='Terry')

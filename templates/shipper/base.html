@@ -1,0 +1,38 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="{% static 'market-rising.ico' %}" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@latest/dist/css/splide.min.css">
+    <link rel="stylesheet" href="{% static 'tailwind.css' %}">
+    <title>Marche :: Shipper :: {% block title %}{%endblock%}</title>
+</head>
+<body>
+    <nav class="bg-gray-30 shadow-md fixed bg-white w-full z-10">
+        <div class="container flex items-center justify-between mx-auto">
+            <div class="p-2">
+                <a href="{% url 'home' %}">
+                    <img class="w-8 h-8" src="{% static 'market-rising-icon.png' %}" alt="Marche">
+                </a>
+            </div>
+            <div class="p-2">
+                {% if user.is_authenticated %}
+                <h2 class="text-lg font-semibold uppercase cursor-pointer">@{{user.username}}</h2>
+                {% else %}
+                <a href="{% url 'add-cart' product.id %}" class="m-8 block text-center uppercase font-semibold rounded-md border-solid border-2 border-blue-500 text-sm text-blue-600 py-2 hover:bg-blue-200 mx-8">Login</a>
+                {% endif %}
+            </div>
+        </div>
+    </nav>
+    <br><br>
+    {% block content %}
+    {% endblock %}
+
+    {% block script %}
+
+    {% endblock %}
+</body>
+</html>

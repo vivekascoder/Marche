@@ -1,0 +1,22 @@
+{% extends '../base.html' %}
+{% load static %}
+
+{% block title %}All Products{% endblock %}
+{% block sub_title %}Product Page{% endblock %}
+{% block cart_total %}{{cart_total}}{% endblock %}
+
+
+{% block content %}
+<div class="mx-auto container">
+    <div class="flex align-center justify-center">
+        <h1 class="text-2xl font-semibold text-center">Products Ordered successfully.</h1>
+    </div>
+    <div>
+        <a href="{% url 'home' %}" class="m-8 block text-center uppercase font-semibold rounded-md border-solid border-2 border-blue-500 text-sm text-blue-600 py-2 hover:bg-blue-200 mx-8">Go To HomePage</a>
+    </div>
+</div>
+{% endblock %}
+
+{% block script%}
+
+{% endblock %}
